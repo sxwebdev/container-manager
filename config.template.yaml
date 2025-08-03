@@ -1,0 +1,8 @@
+bind_address: "127.0.0.1"
+port: "8090"
+
+services:
+  - name: "myservice"
+    project_path: /opt/docker-projects/myservice"
+    compose_file: "docker-compose.yml"
+    enabled: true
