@@ -200,12 +200,10 @@ func (m *Manager) executeDockerCommand(serviceName, action, target string) Updat
 	case "ps":
 		args = []string{"compose", "-f", service.ComposeFile, "ps"}
 	case "update":
-		// Комбинированная команда: pull + up
-		pullResp := m.executeDockerCommand(serviceName, "pull", target)
-		if !pullResp.Success {
-			return pullResp
+		args = []string{"compose", "-f", service.ComposeFile, "up", "-d", "--pull", "always"}
+		if target != "" {
+			args = append(args, target)
 		}
-		return m.executeDockerCommand(serviceName, "up", target)
 	default:
 		return UpdateResponse{
 			Success: false,
