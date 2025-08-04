@@ -1,2 +1,2 @@
 run:
-	go run ./cmd/container-manager
+	go run ./cmd/container-manager start

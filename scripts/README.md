@@ -26,7 +26,7 @@ Automated installation script for Linux systems with systemd support.
 curl -L https://raw.githubusercontent.com/sxwebdev/container-manager/master/scripts/install.sh | sudo bash
 
 # Custom installation directories
-sudo ./install.sh --install-dir /opt/container-manager/bin --config-dir /etc/container-manager
+sudo ./install.sh --install-dir /opt/container-manager/bin --config-dir /opt/container-manager
 
 # Install specific version
 sudo ./install.sh --version v1.0.0
@@ -37,8 +37,8 @@ sudo ./install.sh --service-name container-manager-prod --user cmuser
 
 **Options:**
 
-- `-d, --install-dir DIR`: Binary installation directory (default: `/usr/local/bin`)
-- `-c, --config-dir DIR`: Configuration directory (default: `/etc/container-manager`)
+- `-d, --install-dir DIR`: Binary installation directory (default: `/opt/container-manager/bin`)
+- `-c, --config-dir DIR`: Configuration directory (default: `/opt/container-manager`)
 - `-D, --data-dir DIR`: Data directory (default: `/var/lib/container-manager`)
 - `-s, --service-name NAME`: Systemd service name (default: `container-manager`)
 - `-u, --user USER`: Service user (default: `container-manager`)
@@ -48,7 +48,7 @@ sudo ./install.sh --service-name container-manager-prod --user cmuser
 **Post-Installation:**
 
 - Service: `systemctl status container-manager`
-- Configuration: `/etc/container-manager/config.yaml`
+- Configuration: `/opt/container-manager/config.yaml`
 - Logs: `journalctl -u container-manager -f`
 - Web interface: <http://localhost:8090>
 
@@ -147,7 +147,7 @@ Both scripts automatically check for and require these tools:
 
 ### Basic Configuration
 
-The default configuration file (`/etc/container-manager/config.yaml`) contains:
+The default configuration file (`/opt/container-manager/config.yaml`) contains:
 
 ```yaml
 bind_address: "127.0.0.1"

@@ -11,8 +11,8 @@ NC='\033[0m' # No Color
 # Configuration
 GITHUB_REPO="sxwebdev/container-manager"
 TARGET_BINARY="container-manager"
-DEFAULT_INSTALL_DIR="/usr/local/bin"
-DEFAULT_CONFIG_DIR="/etc/container-manager"
+DEFAULT_INSTALL_DIR="/opt/container-manager/bin"
+DEFAULT_CONFIG_DIR="/opt/container-manager"
 DEFAULT_DATA_DIR="/var/lib/container-manager"
 DEFAULT_SERVICE_NAME="container-manager"
 DEFAULT_USER="container-manager"
@@ -322,11 +322,6 @@ services:
   #   project_path: "/opt/docker-projects/web-app"
   #   compose_file: "docker-compose.prod.yml"
   #   enabled: true
-  
-  # - name: "database"
-  #   project_path: "/opt/docker-projects/db"
-  #   compose_file: "docker-compose.yml"
-  #   enabled: false
 EOF
 
     chown "$SERVICE_USER:$SERVICE_USER" "$CONFIG_FILE"
@@ -350,7 +345,7 @@ Requires=docker.service
 Type=simple
 User=$SERVICE_USER
 Group=$SERVICE_USER
-ExecStart=$BINARY_PATH
+ExecStart=$BINARY_PATH start --config $CONFIG_FILE
 WorkingDirectory=$CONFIG_DIR
 
 # Restart policy
