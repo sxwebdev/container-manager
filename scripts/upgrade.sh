@@ -36,7 +36,7 @@ usage() {
     echo ""
     echo "Arguments:"
     echo "  systemd-service-name  Name of the systemd service to restart"
-    echo "  binary-path          Path to install binary (default: /usr/local/bin/container-manager)"
+    echo "  binary-path          Path to install binary (default: /opt/container-manager/bin/container-manager)"
     echo ""
     echo "Examples:"
     echo "  $0 container-manager"
@@ -58,7 +58,7 @@ if [ $# -lt 1 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
 fi
 
 SERVICE_NAME="$1"
-BINARY_PATH="${2:-/usr/local/bin/container-manager}"
+BINARY_PATH="${2:-/opt/container-manager/local/bin/container-manager}"
 INSTALL_DIR=$(dirname "$BINARY_PATH")
 
 print_info "Starting Container Manager upgrade process..."
@@ -124,7 +124,7 @@ fi
 # Get current version if possible
 CURRENT_VERSION=""
 if [ -x "$BINARY_PATH" ]; then
-    CURRENT_VERSION=$("$BINARY_PATH" --version 2>/dev/null || echo "unknown")
+    CURRENT_VERSION=$("$BINARY_PATH" version 2>/dev/null || echo "unknown")
     print_info "Current version: $CURRENT_VERSION"
 fi
 
@@ -226,7 +226,7 @@ fi
 
 # Verify the new binary works
 print_info "Verifying new binary..."
-NEW_VERSION=$("$EXTRACTED_BINARY" --version 2>/dev/null || echo "unknown")
+NEW_VERSION=$("$EXTRACTED_BINARY" version 2>/dev/null || echo "unknown")
 print_info "New binary version: $NEW_VERSION"
 
 # Stop the service

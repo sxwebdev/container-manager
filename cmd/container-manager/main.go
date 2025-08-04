@@ -49,7 +49,7 @@ func main() {
 	app := &cli.Command{
 		Name:    appName,
 		Usage:   "A CLI application for " + appName,
-		Version: version,
+		Version: getBuildVersion(),
 		Suggest: true,
 		Commands: []*cli.Command{
 			startCMD(l),
