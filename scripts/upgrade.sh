@@ -58,7 +58,7 @@ if [ $# -lt 1 ] || [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
 fi
 
 SERVICE_NAME="$1"
-BINARY_PATH="${2:-/opt/container-manager/local/bin/container-manager}"
+BINARY_PATH="${2:-/opt/container-manager/bin/container-manager}"
 INSTALL_DIR=$(dirname "$BINARY_PATH")
 
 print_info "Starting Container Manager upgrade process..."
