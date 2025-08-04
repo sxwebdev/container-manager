@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	appName    = "sentinel"
+	appName    = "container-manager"
 	version    = "local"
 	commitHash = "unknown"
 	buildDate  = "unknown"
